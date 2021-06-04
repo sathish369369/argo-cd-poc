@@ -1,20 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-ui
+  name: "cas-deployment"
+  namespace: "default"
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: guestbook-ui
+      app: "cas"
+  replicas: 1
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: "cas"
     spec:
+      hostname: cas-service
+      volumes:
+      - name: dev-cas-properties
+        configMap:
+          name: dev-cas-properties
+          defaultMode: 0775
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
-        name: guestbook-ui
+      - image: cas-demo:latest
+        imagePullPolicy: IfNotPresent
+        name: "cas6"
         ports:
-        - containerPort: 80
+        - containerPort: 9090
+        - containerPort: 5701
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        volumeMounts:
+        - mountPath: /app/cas.properties
+          subPath: cas.properties
+          name: dev-cas-properties
+
