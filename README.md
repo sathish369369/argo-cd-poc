@@ -6,5 +6,5 @@ to explore ArgoCD and GitOps!
 
 | Application | Description |
 |-------------|-------------|
-| [guestbook](guestbook/) | A hello word guestbook app as plain YAML |
+| [ARGOCD_POC](Argocd/) | Ardocd_poc |
 |
