@@ -7,4 +7,4 @@ to explore ArgoCD and GitOps!
 | Application | Description |
 |-------------|-------------|
 | [ARGOCD_POC](Argocd/) | Ardocd_poc |
-|
+
